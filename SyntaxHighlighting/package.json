@@ -1,0 +1,26 @@
+{
+    "name": "rasm",
+    "displayName": "rasm",
+    "publisher": "Tjakka5",
+    "description": "",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.60.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": { 
+        "languages": [
+            {
+                "id": "rasm",
+                "extensions": ["rasm"]
+            }
+        ],
+        "grammars": [{
+            "language": "rasm",
+            "scopeName": "source.rasm",
+            "path": "./syntaxes/rasm.tmLanguage.json"
+        }]
+    }
+}

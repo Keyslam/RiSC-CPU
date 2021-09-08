@@ -8,6 +8,6 @@ This project consists of a few parts which I will be building that I'll be build
 
 - [ ] Lexer & Parser
 - [ ] Assembler
-- [ ] VSCode syntax highlighting
+- [x] VSCode syntax highlighting
 - [ ] Logisim implementation 
 

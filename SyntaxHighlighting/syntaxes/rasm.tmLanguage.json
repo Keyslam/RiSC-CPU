@@ -1,0 +1,35 @@
+{
+  "scopeName": "source.rasm",
+  "patterns": [{ "include": "#expression" }],
+  "repository": {
+    "expression": {
+      "patterns": [
+				{ "include": "#label" }, 
+				{ "include": "#comment" }, 
+				{ "include": "#keyword" }, 
+				{ "include": "#special-keyword" },
+				{ "include": "#argument" }
+			]
+    },
+    "label": {
+      "match": "[a-zA-Z0-9]+:",
+      "name": "entity.name.tag"
+    },
+		"comment": {
+			"match": "#.*",
+			"name": "comment"
+		},
+		"special-keyword": {
+      "match": ".fill|.space",
+      "name": "support.type"
+    },
+		"keyword": {
+			"match": "addi|add|nand|lui|sw|lw|beq|jalr|nop|halt|lli|movi",
+			"name": "support.function"
+		},
+    "argument": {
+			"match": "([a-zA-Z]+)|(0[1-7]([0-7])*)|(0x([a-fA-F0-9])+)|((-)?([0-9])+)",
+			"name": "variable.parameter"
+		}
+  }
+}
