@@ -1,1 +1,4 @@
-antlr4-4.9.2.jar
+Grammar/antlr-4.9.2.jar
+
+Assembler/bin
+Assembler/obj
