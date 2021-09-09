@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from rasm.g4 by ANTLR 4.9.2
+// Generated from Rasm.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -32,23 +32,29 @@ using DFA = Antlr4.Runtime.Dfa.DFA;
 
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.9.2")]
 [System.CLSCompliant(false)]
-public partial class rasmParser : Parser {
+public partial class RasmParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		KEYWORD=1, SPECIAL_KEYWORD=2, LABEL=3, ARG=4, WORD=5, OCTAL=6, DECIMAL=7, 
-		HEXADECIMAL=8, COMMENT=9, NL=10, WS=11;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, LABEL=15, WORD=16, OCTAL=17, 
+		DECIMAL=18, HEXADECIMAL=19, COMMENT=20, NL=21, WS=22;
 	public const int
-		RULE_file = 0, RULE_statement = 1, RULE_labelDef = 2, RULE_line = 3;
+		RULE_file = 0, RULE_statement = 1, RULE_labelDef = 2, RULE_line = 3, RULE_keyword = 4, 
+		RULE_special_keyword = 5, RULE_arg = 6;
 	public static readonly string[] ruleNames = {
-		"file", "statement", "labelDef", "line"
+		"file", "statement", "labelDef", "line", "keyword", "special_keyword", 
+		"arg"
 	};
 
 	private static readonly string[] _LiteralNames = {
+		null, "'add'", "'addi'", "'nand'", "'lui'", "'sw'", "'lw'", "'beq'", "'jalr'", 
+		"'nop'", "'halt'", "'lli'", "'movi'", "'.fill'", "'.space'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, "KEYWORD", "SPECIAL_KEYWORD", "LABEL", "ARG", "WORD", "OCTAL", "DECIMAL", 
-		"HEXADECIMAL", "COMMENT", "NL", "WS"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, "LABEL", "WORD", "OCTAL", "DECIMAL", "HEXADECIMAL", 
+		"COMMENT", "NL", "WS"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -61,22 +67,22 @@ public partial class rasmParser : Parser {
 		}
 	}
 
-	public override string GrammarFileName { get { return "rasm.g4"; } }
+	public override string GrammarFileName { get { return "Rasm.g4"; } }
 
 	public override string[] RuleNames { get { return ruleNames; } }
 
 	public override string SerializedAtn { get { return new string(_serializedATN); } }
 
-	static rasmParser() {
+	static RasmParser() {
 		decisionToDFA = new DFA[_ATN.NumberOfDecisions];
 		for (int i = 0; i < _ATN.NumberOfDecisions; i++) {
 			decisionToDFA[i] = new DFA(_ATN.GetDecisionState(i), i);
 		}
 	}
 
-		public rasmParser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
+		public RasmParser(ITokenStream input) : this(input, Console.Out, Console.Error) { }
 
-		public rasmParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
+		public RasmParser(ITokenStream input, TextWriter output, TextWriter errorOutput)
 		: base(input, output, errorOutput)
 	{
 		Interpreter = new ParserATNSimulator(this, _ATN, decisionToDFA, sharedContextCache);
@@ -89,9 +95,9 @@ public partial class rasmParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public LineContext line(int i) {
 			return GetRuleContext<LineContext>(i);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] NL() { return GetTokens(rasmParser.NL); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] NL() { return GetTokens(RasmParser.NL); }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NL(int i) {
-			return GetToken(rasmParser.NL, i);
+			return GetToken(RasmParser.NL, i);
 		}
 		public FileContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -100,13 +106,19 @@ public partial class rasmParser : Parser {
 		public override int RuleIndex { get { return RULE_file; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.EnterFile(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.ExitFile(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRasmVisitor<TResult> typedVisitor = visitor as IRasmVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitFile(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -118,25 +130,37 @@ public partial class rasmParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 12;
+			State = 18;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
-			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << KEYWORD) | (1L << SPECIAL_KEYWORD) | (1L << LABEL) | (1L << NL))) != 0)) {
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11) | (1L << T__12) | (1L << T__13) | (1L << LABEL) | (1L << NL))) != 0)) {
 				{
-				State = 10;
+				State = 16;
 				ErrorHandler.Sync(this);
 				switch (TokenStream.LA(1)) {
-				case KEYWORD:
-				case SPECIAL_KEYWORD:
+				case T__0:
+				case T__1:
+				case T__2:
+				case T__3:
+				case T__4:
+				case T__5:
+				case T__6:
+				case T__7:
+				case T__8:
+				case T__9:
+				case T__10:
+				case T__11:
+				case T__12:
+				case T__13:
 				case LABEL:
 					{
-					State = 8;
+					State = 14;
 					line();
 					}
 					break;
 				case NL:
 					{
-					State = 9;
+					State = 15;
 					Match(NL);
 					}
 					break;
@@ -144,7 +168,7 @@ public partial class rasmParser : Parser {
 					throw new NoViableAltException(this);
 				}
 				}
-				State = 14;
+				State = 20;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
@@ -162,12 +186,18 @@ public partial class rasmParser : Parser {
 	}
 
 	public partial class StatementContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode KEYWORD() { return GetToken(rasmParser.KEYWORD, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] ARG() { return GetTokens(rasmParser.ARG); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ARG(int i) {
-			return GetToken(rasmParser.ARG, i);
+		[System.Diagnostics.DebuggerNonUserCode] public KeywordContext keyword() {
+			return GetRuleContext<KeywordContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SPECIAL_KEYWORD() { return GetToken(rasmParser.SPECIAL_KEYWORD, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ArgContext[] arg() {
+			return GetRuleContexts<ArgContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ArgContext arg(int i) {
+			return GetRuleContext<ArgContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public Special_keywordContext special_keyword() {
+			return GetRuleContext<Special_keywordContext>(0);
+		}
 		public StatementContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -175,13 +205,19 @@ public partial class rasmParser : Parser {
 		public override int RuleIndex { get { return RULE_statement; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.EnterStatement(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.ExitStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRasmVisitor<TResult> typedVisitor = visitor as IRasmVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -191,56 +227,68 @@ public partial class rasmParser : Parser {
 		EnterRule(_localctx, 2, RULE_statement);
 		int _la;
 		try {
-			State = 27;
+			State = 34;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case KEYWORD:
+			case T__0:
+			case T__1:
+			case T__2:
+			case T__3:
+			case T__4:
+			case T__5:
+			case T__6:
+			case T__7:
+			case T__8:
+			case T__9:
+			case T__10:
+			case T__11:
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 15;
-				Match(KEYWORD);
+				State = 21;
+				keyword();
 				{
-				State = 17;
+				State = 23;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,2,Context) ) {
 				case 1:
 					{
-					State = 16;
-					Match(ARG);
+					State = 22;
+					arg();
 					}
 					break;
 				}
-				State = 20;
+				State = 26;
 				ErrorHandler.Sync(this);
 				switch ( Interpreter.AdaptivePredict(TokenStream,3,Context) ) {
 				case 1:
 					{
-					State = 19;
-					Match(ARG);
+					State = 25;
+					arg();
 					}
 					break;
 				}
-				State = 23;
+				State = 29;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
-				if (_la==ARG) {
+				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WORD) | (1L << OCTAL) | (1L << DECIMAL) | (1L << HEXADECIMAL))) != 0)) {
 					{
-					State = 22;
-					Match(ARG);
+					State = 28;
+					arg();
 					}
 				}
 
 				}
 				}
 				break;
-			case SPECIAL_KEYWORD:
+			case T__12:
+			case T__13:
 				EnterOuterAlt(_localctx, 2);
 				{
 				{
-				State = 25;
-				Match(SPECIAL_KEYWORD);
-				State = 26;
-				Match(ARG);
+				State = 31;
+				special_keyword();
+				State = 32;
+				arg();
 				}
 				}
 				break;
@@ -260,8 +308,8 @@ public partial class rasmParser : Parser {
 	}
 
 	public partial class LabelDefContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LABEL() { return GetToken(rasmParser.LABEL, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NL() { return GetToken(rasmParser.NL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode LABEL() { return GetToken(RasmParser.LABEL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NL() { return GetToken(RasmParser.NL, 0); }
 		[System.Diagnostics.DebuggerNonUserCode] public StatementContext[] statement() {
 			return GetRuleContexts<StatementContext>();
 		}
@@ -275,13 +323,19 @@ public partial class rasmParser : Parser {
 		public override int RuleIndex { get { return RULE_labelDef; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.EnterLabelDef(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.ExitLabelDef(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRasmVisitor<TResult> typedVisitor = visitor as IRasmVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLabelDef(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -294,19 +348,19 @@ public partial class rasmParser : Parser {
 			int _alt;
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 29;
+			State = 36;
 			Match(LABEL);
-			State = 31;
+			State = 38;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==NL) {
 				{
-				State = 30;
+				State = 37;
 				Match(NL);
 				}
 			}
 
-			State = 34;
+			State = 41;
 			ErrorHandler.Sync(this);
 			_alt = 1;
 			do {
@@ -314,7 +368,7 @@ public partial class rasmParser : Parser {
 				case 1:
 					{
 					{
-					State = 33;
+					State = 40;
 					statement();
 					}
 					}
@@ -322,7 +376,7 @@ public partial class rasmParser : Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				State = 36;
+				State = 43;
 				ErrorHandler.Sync(this);
 				_alt = Interpreter.AdaptivePredict(TokenStream,7,Context);
 			} while ( _alt!=2 && _alt!=global::Antlr4.Runtime.Atn.ATN.INVALID_ALT_NUMBER );
@@ -346,8 +400,8 @@ public partial class rasmParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public LabelDefContext labelDef() {
 			return GetRuleContext<LabelDefContext>(0);
 		}
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMENT() { return GetToken(rasmParser.COMMENT, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NL() { return GetToken(rasmParser.NL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMENT() { return GetToken(RasmParser.COMMENT, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NL() { return GetToken(RasmParser.NL, 0); }
 		public LineContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
@@ -355,13 +409,19 @@ public partial class rasmParser : Parser {
 		public override int RuleIndex { get { return RULE_line; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.EnterLine(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
-			IrasmListener typedListener = listener as IrasmListener;
+			IRasmListener typedListener = listener as IRasmListener;
 			if (typedListener != null) typedListener.ExitLine(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRasmVisitor<TResult> typedVisitor = visitor as IRasmVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitLine(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -373,41 +433,53 @@ public partial class rasmParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 40;
+			State = 47;
 			ErrorHandler.Sync(this);
 			switch (TokenStream.LA(1)) {
-			case KEYWORD:
-			case SPECIAL_KEYWORD:
+			case T__0:
+			case T__1:
+			case T__2:
+			case T__3:
+			case T__4:
+			case T__5:
+			case T__6:
+			case T__7:
+			case T__8:
+			case T__9:
+			case T__10:
+			case T__11:
+			case T__12:
+			case T__13:
 				{
-				State = 38;
+				State = 45;
 				statement();
 				}
 				break;
 			case LABEL:
 				{
-				State = 39;
+				State = 46;
 				labelDef();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			State = 43;
+			State = 50;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			if (_la==COMMENT) {
 				{
-				State = 42;
+				State = 49;
 				Match(COMMENT);
 				}
 			}
 
-			State = 46;
+			State = 53;
 			ErrorHandler.Sync(this);
 			switch ( Interpreter.AdaptivePredict(TokenStream,10,Context) ) {
 			case 1:
 				{
-				State = 45;
+				State = 52;
 				Match(NL);
 				}
 				break;
@@ -425,53 +497,228 @@ public partial class rasmParser : Parser {
 		return _localctx;
 	}
 
+	public partial class KeywordContext : ParserRuleContext {
+		public KeywordContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_keyword; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRasmListener typedListener = listener as IRasmListener;
+			if (typedListener != null) typedListener.EnterKeyword(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRasmListener typedListener = listener as IRasmListener;
+			if (typedListener != null) typedListener.ExitKeyword(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRasmVisitor<TResult> typedVisitor = visitor as IRasmVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitKeyword(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public KeywordContext keyword() {
+		KeywordContext _localctx = new KeywordContext(Context, State);
+		EnterRule(_localctx, 8, RULE_keyword);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 55;
+			_la = TokenStream.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__1) | (1L << T__2) | (1L << T__3) | (1L << T__4) | (1L << T__5) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__11))) != 0)) ) {
+			ErrorHandler.RecoverInline(this);
+			}
+			else {
+				ErrorHandler.ReportMatch(this);
+			    Consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class Special_keywordContext : ParserRuleContext {
+		public Special_keywordContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_special_keyword; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRasmListener typedListener = listener as IRasmListener;
+			if (typedListener != null) typedListener.EnterSpecial_keyword(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRasmListener typedListener = listener as IRasmListener;
+			if (typedListener != null) typedListener.ExitSpecial_keyword(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRasmVisitor<TResult> typedVisitor = visitor as IRasmVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitSpecial_keyword(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public Special_keywordContext special_keyword() {
+		Special_keywordContext _localctx = new Special_keywordContext(Context, State);
+		EnterRule(_localctx, 10, RULE_special_keyword);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 57;
+			_la = TokenStream.LA(1);
+			if ( !(_la==T__12 || _la==T__13) ) {
+			ErrorHandler.RecoverInline(this);
+			}
+			else {
+				ErrorHandler.ReportMatch(this);
+			    Consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ArgContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode OCTAL() { return GetToken(RasmParser.OCTAL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode DECIMAL() { return GetToken(RasmParser.DECIMAL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode HEXADECIMAL() { return GetToken(RasmParser.HEXADECIMAL, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode WORD() { return GetToken(RasmParser.WORD, 0); }
+		public ArgContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_arg; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IRasmListener typedListener = listener as IRasmListener;
+			if (typedListener != null) typedListener.EnterArg(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IRasmListener typedListener = listener as IRasmListener;
+			if (typedListener != null) typedListener.ExitArg(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IRasmVisitor<TResult> typedVisitor = visitor as IRasmVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitArg(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ArgContext arg() {
+		ArgContext _localctx = new ArgContext(Context, State);
+		EnterRule(_localctx, 12, RULE_arg);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 59;
+			_la = TokenStream.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WORD) | (1L << OCTAL) | (1L << DECIMAL) | (1L << HEXADECIMAL))) != 0)) ) {
+			ErrorHandler.RecoverInline(this);
+			}
+			else {
+				ErrorHandler.ReportMatch(this);
+			    Consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	private static char[] _serializedATN = {
 		'\x3', '\x608B', '\xA72A', '\x8133', '\xB9ED', '\x417C', '\x3BE7', '\x7786', 
-		'\x5964', '\x3', '\r', '\x33', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
-		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x3', 
-		'\x2', '\x3', '\x2', '\a', '\x2', '\r', '\n', '\x2', '\f', '\x2', '\xE', 
-		'\x2', '\x10', '\v', '\x2', '\x3', '\x3', '\x3', '\x3', '\x5', '\x3', 
-		'\x14', '\n', '\x3', '\x3', '\x3', '\x5', '\x3', '\x17', '\n', '\x3', 
-		'\x3', '\x3', '\x5', '\x3', '\x1A', '\n', '\x3', '\x3', '\x3', '\x3', 
-		'\x3', '\x5', '\x3', '\x1E', '\n', '\x3', '\x3', '\x4', '\x3', '\x4', 
-		'\x5', '\x4', '\"', '\n', '\x4', '\x3', '\x4', '\x6', '\x4', '%', '\n', 
-		'\x4', '\r', '\x4', '\xE', '\x4', '&', '\x3', '\x5', '\x3', '\x5', '\x5', 
-		'\x5', '+', '\n', '\x5', '\x3', '\x5', '\x5', '\x5', '.', '\n', '\x5', 
-		'\x3', '\x5', '\x5', '\x5', '\x31', '\n', '\x5', '\x3', '\x5', '\x2', 
-		'\x2', '\x6', '\x2', '\x4', '\x6', '\b', '\x2', '\x2', '\x2', '\x39', 
-		'\x2', '\xE', '\x3', '\x2', '\x2', '\x2', '\x4', '\x1D', '\x3', '\x2', 
-		'\x2', '\x2', '\x6', '\x1F', '\x3', '\x2', '\x2', '\x2', '\b', '*', '\x3', 
-		'\x2', '\x2', '\x2', '\n', '\r', '\x5', '\b', '\x5', '\x2', '\v', '\r', 
-		'\a', '\f', '\x2', '\x2', '\f', '\n', '\x3', '\x2', '\x2', '\x2', '\f', 
-		'\v', '\x3', '\x2', '\x2', '\x2', '\r', '\x10', '\x3', '\x2', '\x2', '\x2', 
-		'\xE', '\f', '\x3', '\x2', '\x2', '\x2', '\xE', '\xF', '\x3', '\x2', '\x2', 
-		'\x2', '\xF', '\x3', '\x3', '\x2', '\x2', '\x2', '\x10', '\xE', '\x3', 
-		'\x2', '\x2', '\x2', '\x11', '\x13', '\a', '\x3', '\x2', '\x2', '\x12', 
-		'\x14', '\a', '\x6', '\x2', '\x2', '\x13', '\x12', '\x3', '\x2', '\x2', 
-		'\x2', '\x13', '\x14', '\x3', '\x2', '\x2', '\x2', '\x14', '\x16', '\x3', 
-		'\x2', '\x2', '\x2', '\x15', '\x17', '\a', '\x6', '\x2', '\x2', '\x16', 
-		'\x15', '\x3', '\x2', '\x2', '\x2', '\x16', '\x17', '\x3', '\x2', '\x2', 
-		'\x2', '\x17', '\x19', '\x3', '\x2', '\x2', '\x2', '\x18', '\x1A', '\a', 
-		'\x6', '\x2', '\x2', '\x19', '\x18', '\x3', '\x2', '\x2', '\x2', '\x19', 
-		'\x1A', '\x3', '\x2', '\x2', '\x2', '\x1A', '\x1E', '\x3', '\x2', '\x2', 
-		'\x2', '\x1B', '\x1C', '\a', '\x4', '\x2', '\x2', '\x1C', '\x1E', '\a', 
-		'\x6', '\x2', '\x2', '\x1D', '\x11', '\x3', '\x2', '\x2', '\x2', '\x1D', 
-		'\x1B', '\x3', '\x2', '\x2', '\x2', '\x1E', '\x5', '\x3', '\x2', '\x2', 
-		'\x2', '\x1F', '!', '\a', '\x5', '\x2', '\x2', ' ', '\"', '\a', '\f', 
-		'\x2', '\x2', '!', ' ', '\x3', '\x2', '\x2', '\x2', '!', '\"', '\x3', 
-		'\x2', '\x2', '\x2', '\"', '$', '\x3', '\x2', '\x2', '\x2', '#', '%', 
-		'\x5', '\x4', '\x3', '\x2', '$', '#', '\x3', '\x2', '\x2', '\x2', '%', 
-		'&', '\x3', '\x2', '\x2', '\x2', '&', '$', '\x3', '\x2', '\x2', '\x2', 
-		'&', '\'', '\x3', '\x2', '\x2', '\x2', '\'', '\a', '\x3', '\x2', '\x2', 
-		'\x2', '(', '+', '\x5', '\x4', '\x3', '\x2', ')', '+', '\x5', '\x6', '\x4', 
-		'\x2', '*', '(', '\x3', '\x2', '\x2', '\x2', '*', ')', '\x3', '\x2', '\x2', 
-		'\x2', '+', '-', '\x3', '\x2', '\x2', '\x2', ',', '.', '\a', '\v', '\x2', 
-		'\x2', '-', ',', '\x3', '\x2', '\x2', '\x2', '-', '.', '\x3', '\x2', '\x2', 
-		'\x2', '.', '\x30', '\x3', '\x2', '\x2', '\x2', '/', '\x31', '\a', '\f', 
-		'\x2', '\x2', '\x30', '/', '\x3', '\x2', '\x2', '\x2', '\x30', '\x31', 
-		'\x3', '\x2', '\x2', '\x2', '\x31', '\t', '\x3', '\x2', '\x2', '\x2', 
-		'\r', '\f', '\xE', '\x13', '\x16', '\x19', '\x1D', '!', '&', '*', '-', 
-		'\x30',
+		'\x5964', '\x3', '\x18', '@', '\x4', '\x2', '\t', '\x2', '\x4', '\x3', 
+		'\t', '\x3', '\x4', '\x4', '\t', '\x4', '\x4', '\x5', '\t', '\x5', '\x4', 
+		'\x6', '\t', '\x6', '\x4', '\a', '\t', '\a', '\x4', '\b', '\t', '\b', 
+		'\x3', '\x2', '\x3', '\x2', '\a', '\x2', '\x13', '\n', '\x2', '\f', '\x2', 
+		'\xE', '\x2', '\x16', '\v', '\x2', '\x3', '\x3', '\x3', '\x3', '\x5', 
+		'\x3', '\x1A', '\n', '\x3', '\x3', '\x3', '\x5', '\x3', '\x1D', '\n', 
+		'\x3', '\x3', '\x3', '\x5', '\x3', ' ', '\n', '\x3', '\x3', '\x3', '\x3', 
+		'\x3', '\x3', '\x3', '\x5', '\x3', '%', '\n', '\x3', '\x3', '\x4', '\x3', 
+		'\x4', '\x5', '\x4', ')', '\n', '\x4', '\x3', '\x4', '\x6', '\x4', ',', 
+		'\n', '\x4', '\r', '\x4', '\xE', '\x4', '-', '\x3', '\x5', '\x3', '\x5', 
+		'\x5', '\x5', '\x32', '\n', '\x5', '\x3', '\x5', '\x5', '\x5', '\x35', 
+		'\n', '\x5', '\x3', '\x5', '\x5', '\x5', '\x38', '\n', '\x5', '\x3', '\x6', 
+		'\x3', '\x6', '\x3', '\a', '\x3', '\a', '\x3', '\b', '\x3', '\b', '\x3', 
+		'\b', '\x2', '\x2', '\t', '\x2', '\x4', '\x6', '\b', '\n', '\f', '\xE', 
+		'\x2', '\x5', '\x3', '\x2', '\x3', '\xE', '\x3', '\x2', '\xF', '\x10', 
+		'\x3', '\x2', '\x12', '\x15', '\x2', '\x43', '\x2', '\x14', '\x3', '\x2', 
+		'\x2', '\x2', '\x4', '$', '\x3', '\x2', '\x2', '\x2', '\x6', '&', '\x3', 
+		'\x2', '\x2', '\x2', '\b', '\x31', '\x3', '\x2', '\x2', '\x2', '\n', '\x39', 
+		'\x3', '\x2', '\x2', '\x2', '\f', ';', '\x3', '\x2', '\x2', '\x2', '\xE', 
+		'=', '\x3', '\x2', '\x2', '\x2', '\x10', '\x13', '\x5', '\b', '\x5', '\x2', 
+		'\x11', '\x13', '\a', '\x17', '\x2', '\x2', '\x12', '\x10', '\x3', '\x2', 
+		'\x2', '\x2', '\x12', '\x11', '\x3', '\x2', '\x2', '\x2', '\x13', '\x16', 
+		'\x3', '\x2', '\x2', '\x2', '\x14', '\x12', '\x3', '\x2', '\x2', '\x2', 
+		'\x14', '\x15', '\x3', '\x2', '\x2', '\x2', '\x15', '\x3', '\x3', '\x2', 
+		'\x2', '\x2', '\x16', '\x14', '\x3', '\x2', '\x2', '\x2', '\x17', '\x19', 
+		'\x5', '\n', '\x6', '\x2', '\x18', '\x1A', '\x5', '\xE', '\b', '\x2', 
+		'\x19', '\x18', '\x3', '\x2', '\x2', '\x2', '\x19', '\x1A', '\x3', '\x2', 
+		'\x2', '\x2', '\x1A', '\x1C', '\x3', '\x2', '\x2', '\x2', '\x1B', '\x1D', 
+		'\x5', '\xE', '\b', '\x2', '\x1C', '\x1B', '\x3', '\x2', '\x2', '\x2', 
+		'\x1C', '\x1D', '\x3', '\x2', '\x2', '\x2', '\x1D', '\x1F', '\x3', '\x2', 
+		'\x2', '\x2', '\x1E', ' ', '\x5', '\xE', '\b', '\x2', '\x1F', '\x1E', 
+		'\x3', '\x2', '\x2', '\x2', '\x1F', ' ', '\x3', '\x2', '\x2', '\x2', ' ', 
+		'%', '\x3', '\x2', '\x2', '\x2', '!', '\"', '\x5', '\f', '\a', '\x2', 
+		'\"', '#', '\x5', '\xE', '\b', '\x2', '#', '%', '\x3', '\x2', '\x2', '\x2', 
+		'$', '\x17', '\x3', '\x2', '\x2', '\x2', '$', '!', '\x3', '\x2', '\x2', 
+		'\x2', '%', '\x5', '\x3', '\x2', '\x2', '\x2', '&', '(', '\a', '\x11', 
+		'\x2', '\x2', '\'', ')', '\a', '\x17', '\x2', '\x2', '(', '\'', '\x3', 
+		'\x2', '\x2', '\x2', '(', ')', '\x3', '\x2', '\x2', '\x2', ')', '+', '\x3', 
+		'\x2', '\x2', '\x2', '*', ',', '\x5', '\x4', '\x3', '\x2', '+', '*', '\x3', 
+		'\x2', '\x2', '\x2', ',', '-', '\x3', '\x2', '\x2', '\x2', '-', '+', '\x3', 
+		'\x2', '\x2', '\x2', '-', '.', '\x3', '\x2', '\x2', '\x2', '.', '\a', 
+		'\x3', '\x2', '\x2', '\x2', '/', '\x32', '\x5', '\x4', '\x3', '\x2', '\x30', 
+		'\x32', '\x5', '\x6', '\x4', '\x2', '\x31', '/', '\x3', '\x2', '\x2', 
+		'\x2', '\x31', '\x30', '\x3', '\x2', '\x2', '\x2', '\x32', '\x34', '\x3', 
+		'\x2', '\x2', '\x2', '\x33', '\x35', '\a', '\x16', '\x2', '\x2', '\x34', 
+		'\x33', '\x3', '\x2', '\x2', '\x2', '\x34', '\x35', '\x3', '\x2', '\x2', 
+		'\x2', '\x35', '\x37', '\x3', '\x2', '\x2', '\x2', '\x36', '\x38', '\a', 
+		'\x17', '\x2', '\x2', '\x37', '\x36', '\x3', '\x2', '\x2', '\x2', '\x37', 
+		'\x38', '\x3', '\x2', '\x2', '\x2', '\x38', '\t', '\x3', '\x2', '\x2', 
+		'\x2', '\x39', ':', '\t', '\x2', '\x2', '\x2', ':', '\v', '\x3', '\x2', 
+		'\x2', '\x2', ';', '<', '\t', '\x3', '\x2', '\x2', '<', '\r', '\x3', '\x2', 
+		'\x2', '\x2', '=', '>', '\t', '\x4', '\x2', '\x2', '>', '\xF', '\x3', 
+		'\x2', '\x2', '\x2', '\r', '\x12', '\x14', '\x19', '\x1C', '\x1F', '$', 
+		'(', '-', '\x31', '\x34', '\x37',
 	};
 
 	public static readonly ATN _ATN =

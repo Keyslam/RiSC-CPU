@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from rasm.g4 by ANTLR 4.9.2
+// Generated from Rasm.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -27,62 +27,98 @@ using IToken = Antlr4.Runtime.IToken;
 using ParserRuleContext = Antlr4.Runtime.ParserRuleContext;
 
 /// <summary>
-/// This class provides an empty implementation of <see cref="IrasmListener"/>,
+/// This class provides an empty implementation of <see cref="IRasmListener"/>,
 /// which can be extended to create a listener which only needs to handle a subset
 /// of the available methods.
 /// </summary>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.9.2")]
 [System.Diagnostics.DebuggerNonUserCode]
 [System.CLSCompliant(false)]
-public partial class rasmBaseListener : IrasmListener {
+public partial class RasmBaseListener : IRasmListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.file"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.file"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFile([NotNull] rasmParser.FileContext context) { }
+	public virtual void EnterFile([NotNull] RasmParser.FileContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.file"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.file"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFile([NotNull] rasmParser.FileContext context) { }
+	public virtual void ExitFile([NotNull] RasmParser.FileContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.statement"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterStatement([NotNull] rasmParser.StatementContext context) { }
+	public virtual void EnterStatement([NotNull] RasmParser.StatementContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.statement"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.statement"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitStatement([NotNull] rasmParser.StatementContext context) { }
+	public virtual void ExitStatement([NotNull] RasmParser.StatementContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.labelDef"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.labelDef"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLabelDef([NotNull] rasmParser.LabelDefContext context) { }
+	public virtual void EnterLabelDef([NotNull] RasmParser.LabelDefContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.labelDef"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.labelDef"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLabelDef([NotNull] rasmParser.LabelDefContext context) { }
+	public virtual void ExitLabelDef([NotNull] RasmParser.LabelDefContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.line"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.line"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterLine([NotNull] rasmParser.LineContext context) { }
+	public virtual void EnterLine([NotNull] RasmParser.LineContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.line"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.line"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitLine([NotNull] rasmParser.LineContext context) { }
+	public virtual void ExitLine([NotNull] RasmParser.LineContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RasmParser.keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterKeyword([NotNull] RasmParser.KeywordContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RasmParser.keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitKeyword([NotNull] RasmParser.KeywordContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RasmParser.special_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSpecial_keyword([NotNull] RasmParser.Special_keywordContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RasmParser.special_keyword"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSpecial_keyword([NotNull] RasmParser.Special_keywordContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RasmParser.arg"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterArg([NotNull] RasmParser.ArgContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RasmParser.arg"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitArg([NotNull] RasmParser.ArgContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

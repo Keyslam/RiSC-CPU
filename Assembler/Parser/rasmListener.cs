@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from rasm.g4 by ANTLR 4.9.2
+// Generated from Rasm.g4 by ANTLR 4.9.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -25,49 +25,79 @@ using IToken = Antlr4.Runtime.IToken;
 
 /// <summary>
 /// This interface defines a complete listener for a parse tree produced by
-/// <see cref="rasmParser"/>.
+/// <see cref="RasmParser"/>.
 /// </summary>
 [System.CodeDom.Compiler.GeneratedCode("ANTLR", "4.9.2")]
 [System.CLSCompliant(false)]
-public interface IrasmListener : IParseTreeListener {
+public interface IRasmListener : IParseTreeListener {
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.file"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.file"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterFile([NotNull] rasmParser.FileContext context);
+	void EnterFile([NotNull] RasmParser.FileContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.file"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.file"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitFile([NotNull] rasmParser.FileContext context);
+	void ExitFile([NotNull] RasmParser.FileContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.statement"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterStatement([NotNull] rasmParser.StatementContext context);
+	void EnterStatement([NotNull] RasmParser.StatementContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.statement"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitStatement([NotNull] rasmParser.StatementContext context);
+	void ExitStatement([NotNull] RasmParser.StatementContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.labelDef"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.labelDef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterLabelDef([NotNull] rasmParser.LabelDefContext context);
+	void EnterLabelDef([NotNull] RasmParser.LabelDefContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.labelDef"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.labelDef"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitLabelDef([NotNull] rasmParser.LabelDefContext context);
+	void ExitLabelDef([NotNull] RasmParser.LabelDefContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="rasmParser.line"/>.
+	/// Enter a parse tree produced by <see cref="RasmParser.line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterLine([NotNull] rasmParser.LineContext context);
+	void EnterLine([NotNull] RasmParser.LineContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="rasmParser.line"/>.
+	/// Exit a parse tree produced by <see cref="RasmParser.line"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitLine([NotNull] rasmParser.LineContext context);
+	void ExitLine([NotNull] RasmParser.LineContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RasmParser.keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterKeyword([NotNull] RasmParser.KeywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RasmParser.keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitKeyword([NotNull] RasmParser.KeywordContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RasmParser.special_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterSpecial_keyword([NotNull] RasmParser.Special_keywordContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RasmParser.special_keyword"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitSpecial_keyword([NotNull] RasmParser.Special_keywordContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="RasmParser.arg"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterArg([NotNull] RasmParser.ArgContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="RasmParser.arg"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitArg([NotNull] RasmParser.ArgContext context);
 }

@@ -1,16 +1,17 @@
-grammar rasm;
+grammar Rasm;
 
 file: (line | NL)*; 
 
-statement: KEYWORD (ARG? ARG? ARG?) | (SPECIAL_KEYWORD ARG);
+statement: keyword (arg? arg? arg?) | (special_keyword arg);
 labelDef: LABEL NL? statement+;
 line: (statement | labelDef) COMMENT? NL?;
 
-KEYWORD: 'add' | 'addi' | 'nand' | 'lui' | 'sw' | 'lw' | 'beq' | 'jalr' | 'nop' | 'halt' | 'lli' | 'movi';
-SPECIAL_KEYWORD: '.fill' | '.space';
+keyword: 'add' | 'addi' | 'nand' | 'lui' | 'sw' | 'lw' | 'beq' | 'jalr' | 'nop' | 'halt' | 'lli' | 'movi';
+special_keyword: '.fill' | '.space';
+
+arg: OCTAL | DECIMAL | HEXADECIMAL | WORD;
 
 LABEL: [a-zA-Z0-9]+':';
-ARG: OCTAL | DECIMAL | HEXADECIMAL | WORD;
 WORD: [a-zA-Z]+;
 
 OCTAL : '0' [1-7] ([0-7])*;

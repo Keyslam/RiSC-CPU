@@ -1,1 +1,346 @@
-lw 0 0 0
+movi 3 GRIDXY	# get the address of the array
+nand 3 3 3		# make 3 negative first by bit-wise not
+addi 3 3 1		# then adding 1
+lw	5 0 max		# get the total size on the grid
+add	5 5 3			# add in the grid offset
+sw	5 0 max		# save our 'quit program' cut-off
+
+begin:	
+	addi 4 0 17		# load 17 into r4 [y]
+	movi 3 GRIDXY	# load the addrss of the GRID
+	add  4 4 3		# now at row1 column1
+
+loopone:
+	addi 2 0 14		# we are 14 columns wide
+
+looptwo:  
+	lw	5 4 1		# load GRID[x+1 y]
+	add 6 5 0		# save it in r6
+	lw	5 4 -1	# load GRID[x-1] y
+	add 6 6 5		# add it into r6
+	lw	5 4 -16	# load GRID[x y-1]
+	add	6 6 5		# add it into r6
+	lw 	5 4 16	# load GRID[x y+1]
+	add	6 6 5		# add it into r6
+
+	movi 5 divfour	# address of divide by 4 routine
+	jalr 1 5		# call it
+
+	sw 7 4 0		# store returned average in GRID[x][y]
+
+	addi 4 4 1	# increment pointer
+
+	addi 2 2 -1		# decrement counter
+	beq	2 0 done	# have we done 14 yet?
+	beq	0 0 looptwo	# if not keep looping
+
+done:	
+	lui	1 32767		# highest bit [and test lui]
+	lw	5 0 max		# load maximum value to watch for
+	add	5 5 4			# add to offset
+	nand 5 5 1		# mask for top bit [negative]
+	nand 5 5 5		# invert to get an and
+	beq	5 0 donetwo	# if negative  we are done
+	addi 4 4 2		# otherwise move to next row
+	beq	0 0 loopone	# and re-loop
+
+donetwo: 
+	lw 5 0 count	# load the iteration count
+	addi 5 5 -1		# decrement it
+	sw	5 0 count	# store it back
+	beq	5 0 donethree	# are we done?
+	beq	0 0 begin	# if not re-start the loop
+
+donethree:
+	halt # Game Over
+
+ROne: 
+	.fill 0		# Area to back-up registers if they
+RTwo: 
+	.fill 0		# Will be overwritten in function calls
+RThree: 
+	.fill 0
+
+count: 
+	.fill 2		# 2 iterations
+max: 
+	.fill -237		# cut-off for end of array
+
+divfour:	
+	sw	2 0 RTwo		# back up RTwo
+	sw	3 0 RThree		# back up RThree
+	addi	7 0 0		# r7=0
+	addi	5 0 1		# r5=1 ( 0000 0000 0000 0001 b)
+	addi	2 0 4		# RTwo=4 ( 0000 0000 0000 0100 b)
+loopseven:		
+	nand	3 6 2		# mask our input vs *4 bit
+	nand    3 3 3		# bitwise-not the result
+	beq	3 0 loopnine	# if zero  that bit not set
+	add	7 7 5		# if not  add the /4 mask
+loopnine:
+	add	5 5 5		# shift /4 mask left
+	add	2 2 2		# shift *4 mask left
+	beq	2 0 donenine	# if *4 has overflown  we are done
+	beq	0 0 loopseven	# if not keep looping
+donenine:	
+	lw	2 0 RTwo		# restore RTwo
+	lw	3 0 RThree		# restore RThree
+	jalr	0 1		# return to address in ROne
+
+GRIDXY:
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 5000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 0
+	.fill 6000
+	.fill 3000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 10000
+	.fill 6000
